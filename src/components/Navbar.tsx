@@ -12,6 +12,8 @@ const navLinks: { label: string; page: Page }[] = [
   { label: 'Quiz', page: 'quiz' },
   { label: 'DSA Track', page: 'dsa' },
   { label: 'Learning Tracks', page: 'tracks' },
+  { label: 'Profile', page: 'profile' },
+  { label: 'Leaderboard', page: 'leaderboard' },
 ];
 
 export default function Navbar({ currentPage, onNavigate }: NavbarProps) {

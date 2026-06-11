@@ -170,3 +170,14 @@ export const MOCK_ROADMAP = {
     },
   ],
 };
+
+export const TOPIC_AREAS = [
+  { label: 'Data Science', value: 'data-science' },
+  { label: 'Machine Learning', value: 'ml' },
+  { label: 'Web Development', value: 'web-dev' },
+  { label: 'Mobile Development', value: 'mobile-dev' },
+  { label: 'Cloud & DevOps', value: 'devops' },
+  { label: 'System Design', value: 'system-design' },
+];
+
+export const MOCK_BADGES = ['First Quiz', 'DSA Master', 'Full Stack', 'AI Pioneer', 'Web Developer', 'Mobile Expert'];

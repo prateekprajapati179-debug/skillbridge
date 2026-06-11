@@ -6,6 +6,8 @@ import QuizPage from './pages/QuizPage';
 import RoadmapPage from './pages/RoadmapPage';
 import DSAPage from './pages/DSAPage';
 import TracksPage from './pages/TracksPage';
+import ProfilePage from './pages/ProfilePage';
+import LeaderboardPage from './pages/LeaderboardPage';
 import type { Page, QuizAnswers } from './types';
 
 export default function App() {
@@ -36,6 +38,8 @@ export default function App() {
         )}
         {currentPage === 'dsa' && <DSAPage />}
         {currentPage === 'tracks' && <TracksPage />}
+        {currentPage === 'profile' && <ProfilePage onNavigate={handleNavigate} />}
+        {currentPage === 'leaderboard' && <LeaderboardPage />}
       </main>
 
       <Chatbot />

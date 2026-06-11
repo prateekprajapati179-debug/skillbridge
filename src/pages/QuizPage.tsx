@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react';
 import type { QuizAnswers, Page } from '../types';
-import { SKILLS_OPTIONS, DREAM_JOB_OPTIONS, COMPANY_OPTIONS, YEAR_OPTIONS, LEARNING_STYLES } from '../data';
+import { SKILLS_OPTIONS, DREAM_JOB_OPTIONS, COMPANY_OPTIONS, YEAR_OPTIONS, LEARNING_STYLES, TOPIC_AREAS } from '../data';
 
 interface QuizPageProps {
   onComplete: (answers: QuizAnswers) => void;
   onNavigate: (page: Page) => void;
 }
 
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 7;
 
 export default function QuizPage({ onComplete }: QuizPageProps) {
   const [step, setStep] = useState(0);
@@ -19,6 +19,7 @@ export default function QuizPage({ onComplete }: QuizPageProps) {
     targetCompanies: [],
     year: '',
     learningStyle: '',
+    topicInterests: [],
   });
 
   const toggleCheckbox = (field: 'skills' | 'targetCompanies', value: string) => {
@@ -41,6 +42,7 @@ export default function QuizPage({ onComplete }: QuizPageProps) {
       case 3: return answers.targetCompanies.length > 0;
       case 4: return answers.year !== '';
       case 5: return answers.learningStyle !== '';
+      case 6: return answers.topicInterests && answers.topicInterests.length > 0;
       default: return false;
     }
   };
@@ -228,6 +230,41 @@ export default function QuizPage({ onComplete }: QuizPageProps) {
                 </div>
               </div>
             )}
+
+            {step === 6 && (
+              <div>
+                <h2 className="text-xl font-semibold text-slate-900 mb-2">Which learning areas interest you?</h2>
+                <p className="text-slate-500 text-sm mb-6">Select all that apply — we'll create personalized roadmaps</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {TOPIC_AREAS.map((topic) => {
+                    const selected = answers.topicInterests?.includes(topic.value);
+                    return (
+                      <button
+                        key={topic.value}
+                        onClick={() => {
+                          const currentInterests = answers.topicInterests || [];
+                          setAnswers({
+                            ...answers,
+                            topicInterests: currentInterests.includes(topic.value)
+                              ? currentInterests.filter((v) => v !== topic.value)
+                              : [...currentInterests, topic.value],
+                          });
+                        }}
+                        className={`flex items-center gap-3 px-5 py-4 rounded-xl border-2 font-medium transition-all duration-200 text-left ${
+                          selected
+                            ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
+                            : 'border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50'
+                        }`}
+                      >
+                        {selected && <CheckCircle className="w-5 h-5 text-indigo-500 flex-shrink-0" />}
+                        <span className={!selected ? 'ml-2' : ''}>{topic.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
           </div>
 
           <div className="flex items-center justify-between mt-8 pt-6 border-t border-slate-100">

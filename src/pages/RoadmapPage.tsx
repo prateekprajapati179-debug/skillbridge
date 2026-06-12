@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Clock, ExternalLink, RefreshCw, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
 import type { RoadmapData, QuizAnswers, Page } from '../types';
 import { MOCK_ROADMAP } from '../data';
+import { generateRoadmap } from '../utils/roadmapGenerator';
 
 interface RoadmapPageProps {
   quizAnswers: QuizAnswers | null;
@@ -48,7 +49,11 @@ export default function RoadmapPage({ quizAnswers, onNavigate }: RoadmapPageProp
       const data = await res.json();
       setRoadmap(data);
     } catch {
-      setRoadmap(MOCK_ROADMAP);
+      if (quizAnswers) {
+        setRoadmap(generateRoadmap(quizAnswers));
+      } else {
+        setRoadmap(MOCK_ROADMAP);
+      }
     } finally {
       setLoading(false);
     }

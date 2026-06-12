@@ -9,13 +9,6 @@ const QUICK_ACTIONS = [
   { icon: '🚀', label: 'Career Path', query: 'What skills do I need to become a Full Stack Developer?' },
 ];
 
-const SUGGESTED_QUESTIONS = [
-  'How do I start learning DSA?',
-  'What skills does Google look for?',
-  'Best roadmap for Full Stack Dev?',
-  'How to prepare for system design?',
-];
-
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([

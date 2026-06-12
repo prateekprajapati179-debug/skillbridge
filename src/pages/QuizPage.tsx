@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft, CheckCircle } from 'lucide-react';
 import type { QuizAnswers, Page } from '../types';
-import { SKILLS_OPTIONS, DREAM_JOB_OPTIONS, COMPANY_OPTIONS, YEAR_OPTIONS, LEARNING_STYLES, TOPIC_AREAS } from '../data';
+import { SKILLS_OPTIONS, DREAM_JOB_OPTIONS, COMPANY_OPTIONS, YEAR_OPTIONS, TOPIC_AREAS } from '../data';
 
 interface QuizPageProps {
   onComplete: (answers: QuizAnswers) => void;

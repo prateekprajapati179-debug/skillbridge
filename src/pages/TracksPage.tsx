@@ -24,14 +24,14 @@ export default function TracksPage() {
   const resources = LEARNING_TRACKS[activeTab] || [];
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-24 pb-12 px-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 dark:text-slate-100 pt-24 pb-12 px-4">
       <div className="max-w-5xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Learning Tracks</h1>
-          <p className="text-slate-500">Curated free resources for every engineering career path</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">Learning Tracks</h1>
+          <p className="text-slate-500 dark:text-slate-300">Curated free resources for every engineering career path</p>
         </div>
 
-        <div className="flex gap-2 bg-white rounded-2xl p-2 border border-slate-100 shadow-sm mb-8 overflow-x-auto">
+        <div className="flex gap-2 bg-white dark:bg-slate-800 rounded-2xl p-2 border border-slate-100 dark:border-slate-700 shadow-sm mb-8 overflow-x-auto">
           {TABS.map((tab) => (
             <button
               key={tab}
@@ -62,7 +62,7 @@ export default function TracksPage() {
           {resources.map((resource, i) => (
             <div
               key={resource.name}
-              className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
+              className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
             >
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-lg flex-shrink-0">
@@ -75,19 +75,19 @@ export default function TracksPage() {
                 </div>
               </div>
 
-              <h3 className="font-bold text-slate-900 text-lg mb-2">{resource.name}</h3>
-              <p className="text-sm text-slate-500 leading-relaxed flex-1 mb-4">{resource.description}</p>
+              <h3 className="font-bold text-slate-900 dark:text-slate-100 text-lg mb-2">{resource.name}</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-300 leading-relaxed flex-1 mb-4">{resource.description}</p>
 
-              <div className="flex items-center justify-between pt-4 border-t border-slate-50">
+              <div className="flex items-center justify-between pt-4 border-t border-slate-50 dark:border-slate-700">
                 <div className="flex items-center gap-1 text-xs text-slate-400">
                   <Clock className="w-3.5 h-3.5" />
                   {resource.duration}
                 </div>
-                <a
+                  <a
                   href={resource.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-600 border border-indigo-200 rounded-xl text-sm font-semibold hover:bg-indigo-100 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-slate-700 text-indigo-600 rounded-xl text-sm font-semibold hover:bg-indigo-100 dark:hover:bg-slate-600 transition-colors"
                 >
                   Start Learning
                   <ExternalLink className="w-3.5 h-3.5" />

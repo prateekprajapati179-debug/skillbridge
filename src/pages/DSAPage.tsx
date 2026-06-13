@@ -47,14 +47,14 @@ export default function DSAPage() {
   const hardCount = questions.filter((q) => q.difficulty === 'Hard').length;
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-24 pb-12 px-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 dark:text-slate-100 pt-24 pb-12 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">DSA Interview Track</h1>
-          <p className="text-slate-500">Practice company-specific data structures & algorithms questions</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">DSA Interview Track</h1>
+          <p className="text-slate-500 dark:text-slate-300">Practice company-specific data structures & algorithms questions</p>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 mb-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-6 mb-8">
           <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-2">Select Company</label>
@@ -62,7 +62,7 @@ export default function DSAPage() {
                 <select
                   value={selectedCompany}
                   onChange={(e) => setSelectedCompany(e.target.value)}
-                  className="appearance-none bg-slate-50 border-2 border-slate-200 text-slate-800 font-medium rounded-xl px-5 py-3 pr-10 focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
+                  className="appearance-none bg-slate-50 dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-medium rounded-xl px-5 py-3 pr-10 focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
                 >
                   {COMPANY_OPTIONS.map((c) => (
                     <option key={c} value={c}>{c}</option>
@@ -93,19 +93,19 @@ export default function DSAPage() {
             <Loader2 className="w-8 h-8 text-indigo-500 animate-spin" />
           </div>
         ) : (
-          <div className="space-y-3">
+            <div className="space-y-3">
             {questions.map((q, i) => (
               <div
                 key={q.id}
-                className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 flex items-center justify-between gap-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-5 flex items-center justify-between gap-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
                 <div className="flex items-center gap-4 flex-1 min-w-0">
                   <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center text-sm font-bold flex-shrink-0">
                     {i + 1}
                   </div>
                   <div className="min-w-0">
-                    <div className="font-semibold text-slate-900 truncate">{q.title}</div>
-                    <div className="text-sm text-slate-500">{q.topic}</div>
+                    <div className="font-semibold text-slate-900 dark:text-slate-100 truncate">{q.title}</div>
+                      <div className="text-sm text-slate-500 dark:text-slate-300">{q.topic}</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0">

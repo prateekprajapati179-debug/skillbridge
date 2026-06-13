@@ -61,13 +61,13 @@ export default function RoadmapPage({ quizAnswers, onNavigate }: RoadmapPageProp
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 pt-24 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 dark:text-slate-100 pt-24 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-indigo-100 flex items-center justify-center animate-pulse">
             <Sparkles className="w-8 h-8 text-indigo-500" />
           </div>
-          <h2 className="text-xl font-semibold text-slate-900 mb-2">Generating Your Roadmap...</h2>
-          <p className="text-slate-500">Our AI is analyzing your profile and creating a personalized plan.</p>
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100 mb-2">Generating Your Roadmap...</h2>
+          <p className="text-slate-500 dark:text-slate-300">Our AI is analyzing your profile and creating a personalized plan.</p>
         </div>
       </div>
     );
@@ -76,7 +76,7 @@ export default function RoadmapPage({ quizAnswers, onNavigate }: RoadmapPageProp
   if (!roadmap) return null;
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-24 pb-12 px-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 dark:text-slate-100 pt-24 pb-12 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="bg-gradient-to-br from-[#0F172A] to-[#1E293B] rounded-2xl p-8 mb-8 text-white">
           <div className="flex items-center gap-2 text-indigo-400 text-sm font-medium mb-3">
@@ -87,22 +87,21 @@ export default function RoadmapPage({ quizAnswers, onNavigate }: RoadmapPageProp
             {quizAnswers ? `Your ${quizAnswers.dreamJob} Roadmap` : 'Your Personalized Roadmap'}
           </h1>
           <div className="flex flex-wrap gap-4">
-            <div className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2">
+            <div className="flex items-center gap-2 bg-white/10 dark:bg-white/5 rounded-lg px-4 py-2">
               <Clock className="w-4 h-4 text-indigo-400" />
               <span className="text-sm">Job-ready in <strong>{roadmap.estimatedWeeks} weeks</strong></span>
             </div>
             <button
               onClick={fetchRoadmap}
-              className="flex items-center gap-2 bg-white/10 hover:bg-white/20 rounded-lg px-4 py-2 text-sm transition-colors"
+              className="flex items-center gap-2 bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 rounded-lg px-4 py-2 text-sm transition-colors"
             >
               <RefreshCw className="w-4 h-4" />
               Regenerate
             </button>
           </div>
         </div>
-
-        <div className="bg-white rounded-2xl border border-slate-100 p-6 mb-8 shadow-sm">
-          <h2 className="font-semibold text-slate-900 mb-4 text-lg">Skills You Need to Learn</h2>
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 p-6 mb-8 shadow-sm">
+          <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-4 text-lg">Skills You Need to Learn</h2>
           <div className="flex flex-wrap gap-2">
             {roadmap.missingSkills.map((skill, i) => (
               <span
@@ -116,24 +115,24 @@ export default function RoadmapPage({ quizAnswers, onNavigate }: RoadmapPageProp
         </div>
 
         <div className="mb-8">
-          <h2 className="font-semibold text-slate-900 mb-4 text-lg">Week-by-Week Learning Plan</h2>
+          <h2 className="font-semibold text-slate-900 dark:text-slate-100 mb-4 text-lg">Week-by-Week Learning Plan</h2>
           <div className="space-y-4">
             {roadmap.weeklyPlan.map((week, i) => (
               <div
                 key={week.week}
-                className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden"
+                className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden"
               >
                 <button
                   onClick={() => setExpandedWeek(expandedWeek === i ? null : i)}
-                  className="w-full px-6 py-4 flex items-center justify-between hover:bg-slate-50 transition-colors"
+                  className="w-full px-6 py-4 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
                 >
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm flex-shrink-0">
                       {week.week}
                     </div>
                     <div className="text-left">
-                      <div className="font-semibold text-slate-900">Week {week.week}</div>
-                      <div className="text-sm text-slate-500">{week.topic}</div>
+                      <div className="font-semibold text-slate-900 dark:text-slate-100">Week {week.week}</div>
+                      <div className="text-sm text-slate-500 dark:text-slate-300">{week.topic}</div>
                     </div>
                   </div>
                   {expandedWeek === i ? (
@@ -147,10 +146,10 @@ export default function RoadmapPage({ quizAnswers, onNavigate }: RoadmapPageProp
                   <div className="px-6 pb-6 border-t border-slate-50">
                     <div className="pt-4 grid md:grid-cols-2 gap-6">
                       <div>
-                        <div className="text-sm font-semibold text-slate-700 mb-3">Tasks</div>
+                        <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Tasks</div>
                         <ul className="space-y-2">
                           {week.tasks.map((task) => (
-                            <li key={task} className="flex items-start gap-2 text-sm text-slate-600">
+                            <li key={task} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
                               <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 flex-shrink-0" />
                               {task}
                             </li>
@@ -158,7 +157,7 @@ export default function RoadmapPage({ quizAnswers, onNavigate }: RoadmapPageProp
                         </ul>
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-slate-700 mb-3">Free Resources</div>
+                        <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Free Resources</div>
                         <div className="space-y-2">
                           {week.resources.map((res) => (
                             <a
@@ -182,10 +181,10 @@ export default function RoadmapPage({ quizAnswers, onNavigate }: RoadmapPageProp
           </div>
         </div>
 
-        <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="bg-indigo-50 dark:bg-indigo-900 border border-indigo-100 dark:border-indigo-700 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            <div className="font-semibold text-slate-900 mb-1">Practice DSA for your target companies</div>
-            <div className="text-sm text-slate-500">Get company-specific interview questions with solutions</div>
+            <div className="font-semibold text-slate-900 dark:text-slate-100 mb-1">Practice DSA for your target companies</div>
+            <div className="text-sm text-slate-500 dark:text-slate-300">Get company-specific interview questions with solutions</div>
           </div>
           <button
             onClick={() => onNavigate('dsa')}

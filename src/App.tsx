@@ -25,7 +25,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-slate-900 dark:bg-[#071026] dark:text-slate-100">
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
 
       <main>

@@ -43,25 +43,25 @@ export default function LeaderboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 pt-24 pb-12 px-4 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 dark:text-slate-100 pt-24 pb-12 px-4 flex items-center justify-center">
         <div className="text-center">
           <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-slate-600">Loading leaderboard...</p>
+          <p className="text-slate-600 dark:text-slate-300">Loading leaderboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-24 pb-12 px-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 dark:text-slate-100 pt-24 pb-12 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Trophy className="w-10 h-10 text-amber-500" />
-            <h1 className="text-4xl font-bold text-slate-900">Global Leaderboard</h1>
+            <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-100">Global Leaderboard</h1>
           </div>
-          <p className="text-slate-600 text-lg">Compete with learners worldwide and climb the ranks</p>
+          <p className="text-slate-600 dark:text-slate-300 text-lg">Compete with learners worldwide and climb the ranks</p>
         </div>
 
         {/* User's Rank Card */}
@@ -79,19 +79,19 @@ export default function LeaderboardPage() {
         )}
 
         {/* Leaderboard Table */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-50 border-b border-slate-200">
+              <thead className="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">Rank</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">User</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">Points</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">Badges</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900">Trend</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900 dark:text-slate-100">Rank</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900 dark:text-slate-100">User</th>
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900 dark:text-slate-100">Points</th>
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900 dark:text-slate-100">Badges</th>
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-slate-900 dark:text-slate-100">Trend</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-200">
+              <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                 {leaderboard.map((entry) => (
                   <tr
                     key={entry.id}
@@ -110,7 +110,7 @@ export default function LeaderboardPage() {
                           {entry.username.split(' ').map((n) => n[0]).join('')}
                         </div>
                         <div>
-                          <p className="font-semibold text-slate-900">{entry.username}</p>
+                          <p className="font-semibold text-slate-900 dark:text-slate-100">{entry.username}</p>
                           {entry.rank === userRank && (
                             <p className="text-xs text-indigo-600 font-medium">You</p>
                           )}
@@ -118,13 +118,13 @@ export default function LeaderboardPage() {
                       </div>
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <div className="font-bold text-slate-900">{entry.totalPoints}</div>
-                      <div className="text-xs text-slate-500">points</div>
+                      <div className="font-bold text-slate-900 dark:text-slate-100">{entry.totalPoints}</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-300">points</div>
                     </td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <span className="text-2xl">🏆</span>
-                        <span className="font-semibold text-slate-900">{entry.badgesCount}</span>
+                        <span className="font-semibold text-slate-900 dark:text-slate-100">{entry.badgesCount}</span>
                       </div>
                     </td>
                     <td className="px-6 py-4 text-right">
@@ -132,7 +132,7 @@ export default function LeaderboardPage() {
                         {entry.rank <= 3 ? (
                           <span className="text-green-600 font-semibold">↑ Rising</span>
                         ) : (
-                          <span className="text-slate-500 font-semibold">→ Stable</span>
+                          <span className="text-slate-500 dark:text-slate-300 font-semibold">→ Stable</span>
                         )}
                       </div>
                     </td>
@@ -145,37 +145,37 @@ export default function LeaderboardPage() {
 
         {/* Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-          <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
                 <Trophy className="w-6 h-6 text-amber-600" />
               </div>
-              <h3 className="font-semibold text-slate-900">Top Reward</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-slate-100">Top Reward</h3>
             </div>
             <p className="text-2xl font-bold text-amber-600 mb-2">5 Free Credits</p>
-            <p className="text-sm text-slate-600">Reach #1 in global rankings</p>
+            <p className="text-sm text-slate-600 dark:text-slate-300">Reach #1 in global rankings</p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
                 <Medal className="w-6 h-6 text-purple-600" />
               </div>
-              <h3 className="font-semibold text-slate-900">Your Points</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-slate-100">Your Points</h3>
             </div>
             <p className="text-2xl font-bold text-purple-600 mb-2">450</p>
-            <p className="text-sm text-slate-600">Earn more by completing lessons</p>
+            <p className="text-sm text-slate-600 dark:text-slate-300">Earn more by completing lessons</p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 p-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center">
                 <span className="text-lg">🎯</span>
               </div>
-              <h3 className="font-semibold text-slate-900">Next Level</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-slate-100">Next Level</h3>
             </div>
             <p className="text-2xl font-bold text-indigo-600 mb-2">550 Points</p>
-            <p className="text-sm text-slate-600">100 points to rank up!</p>
+            <p className="text-sm text-slate-600 dark:text-slate-300">100 points to rank up!</p>
           </div>
         </div>
       </div>

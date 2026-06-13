@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Brain, Target, Map, Code, BookOpen, Sparkles, CheckCircle, Users, TrendingUp } from 'lucide-react';
+import { ArrowRight, Brain, Target, Map, Code, BookOpen, Sparkles, CheckCircle, Users, TrendingUp, Sun, Moon } from 'lucide-react';
 import type { Page } from '../types';
 
 interface HomePageProps {
@@ -28,6 +28,20 @@ export default function HomePage({ onNavigate }: HomePageProps) {
     { id: 3, author: 'Neha', message: 'The AI roadmap helped me structure my week perfectly. Highly recommend!', time: '6h ago' },
   ]);
   const [newPost, setNewPost] = useState('');
+  const [isDark, setIsDark] = useState<boolean>(
+    typeof document !== 'undefined' && document.documentElement.classList.contains('dark')
+  );
+
+  function toggleTheme() {
+    try {
+      const next = !document.documentElement.classList.contains('dark');
+      document.documentElement.classList.toggle('dark', next);
+      localStorage.setItem('theme', next ? 'dark' : 'light');
+      setIsDark(next);
+    } catch (e) {
+      // ignore
+    }
+  }
 
   const handlePostSubmit = () => {
     if (!newPost.trim()) return;
@@ -39,7 +53,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-slate-900 dark:text-slate-100">
       <section className="bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A] pt-24 pb-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl" />
@@ -75,6 +89,14 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               >
                 Browse Learning Tracks
               </button>
+              <button
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 hover:opacity-90 transition-colors"
+              >
+                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                <span className="text-sm font-medium">{isDark ? 'Light' : 'Dark'}</span>
+              </button>
             </div>
           </div>
 
@@ -89,22 +111,22 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-slate-50">
+      <section className="py-20 px-4 bg-slate-50 dark:bg-slate-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Your 5-Step Journey to Success</h2>
-            <p className="text-slate-500 max-w-xl mx-auto">A proven path taken by 10,000+ engineering students to crack interviews at top companies.</p>
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4">Your 5-Step Journey to Success</h2>
+            <p className="text-slate-500 dark:text-slate-300 max-w-xl mx-auto">A proven path taken by 10,000+ engineering students to crack interviews at top companies.</p>
           </div>
           <div className="grid md:grid-cols-5 gap-6">
             {steps.map((step, i) => (
               <div key={i} className="relative">
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transition-all duration-200 h-full">
+                <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:-translate-y-1 transition-all duration-200 h-full">
                   <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
                     {step.icon}
                   </div>
                   <div className="text-xs font-bold text-indigo-500 uppercase tracking-wider mb-2">Step {i + 1}</div>
-                  <h3 className="font-semibold text-slate-900 mb-2">{step.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
+                  <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">{step.title}</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-300 leading-relaxed">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -112,11 +134,11 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 bg-white dark:bg-slate-900">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">Everything you need to crack your dream job</h2>
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-6">Everything you need to crack your dream job</h2>
               <div className="space-y-5">
                 {[
                   { icon: <Brain className="w-5 h-5 text-indigo-500" />, title: 'AI Skill Gap Analysis', desc: 'Powered by Groq LLaMA 3 — identifies missing skills based on job requirements.' },
@@ -125,12 +147,12 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                   { icon: <TrendingUp className="w-5 h-5 text-orange-500" />, title: '24/7 AI Mentor', desc: 'Ask any doubt anytime to our AI chatbot trained on engineering interview content.' },
                 ].map((f) => (
                   <div key={f.title} className="flex gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-lg bg-slate-50 dark:bg-slate-700 flex items-center justify-center flex-shrink-0">
                       {f.icon}
                     </div>
                     <div>
-                      <div className="font-semibold text-slate-900 mb-1">{f.title}</div>
-                      <div className="text-sm text-slate-500">{f.desc}</div>
+                      <div className="font-semibold text-slate-900 dark:text-slate-100 mb-1">{f.title}</div>
+                      <div className="text-sm text-slate-500 dark:text-slate-300">{f.desc}</div>
                     </div>
                   </div>
                 ))}
@@ -160,10 +182,10 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-slate-50">
+      <section className="py-20 px-4 bg-slate-50 dark:bg-slate-800">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
-            <div className="bg-white rounded-3xl shadow-sm border border-slate-100 p-8">
+            <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700 p-8">
               <div className="flex items-center justify-between gap-4 mb-6">
                 <div>
                   <p className="text-sm text-indigo-500 font-semibold uppercase tracking-[0.2em]">Community</p>
@@ -181,7 +203,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                     value={newPost}
                     onChange={(event) => setNewPost(event.target.value)}
                     placeholder="Share your question, achievement, or tip..."
-                    className="w-full min-h-[140px] resize-none rounded-3xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-900 outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+                    className="w-full min-h-[140px] resize-none rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-4 text-sm text-slate-900 dark:text-slate-100 outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
                   />
                   <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <div className="text-sm text-slate-500">Engage with learners, ask doubts, and celebrate progress.</div>
@@ -196,7 +218,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
                 <div className="space-y-4">
                   {communityPosts.map((post) => (
-                    <div key={post.id} className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <div key={post.id} className="rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-5 shadow-sm">
                       <div className="flex items-center justify-between gap-3 mb-3">
                         <div>
                           <p className="font-semibold text-slate-900">{post.author}</p>
@@ -207,7 +229,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                           Discussion
                         </div>
                       </div>
-                      <p className="text-slate-700 leading-relaxed">{post.message}</p>
+                      <p className="text-slate-700 dark:text-slate-200 leading-relaxed">{post.message}</p>
                     </div>
                   ))}
                 </div>
@@ -215,7 +237,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             </div>
 
             <div className="space-y-6">
-              <div className="rounded-3xl bg-white border border-slate-200 p-8 shadow-sm">
+              <div className="rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 shadow-sm">
                 <p className="text-sm text-indigo-500 font-semibold uppercase tracking-[0.2em] mb-4">Why join?</p>
                 <ul className="space-y-4 text-slate-600">
                   <li className="flex gap-3 items-start">
@@ -264,7 +286,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             </div>
             Skill<span className="text-indigo-400">Bridge</span>
           </div>
-          <p className="text-slate-500 text-sm">Built for Indian engineering students. Free forever.</p>
+          <p className="text-slate-500 dark:text-slate-300 text-sm">Built for Indian engineering students. Free forever.</p>
         </div>
       </footer>
     </div>
